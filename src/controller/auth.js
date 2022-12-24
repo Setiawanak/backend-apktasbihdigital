@@ -12,11 +12,11 @@ const response = (res, statuscode, message, data) => {
 exports.register = async (req, res) => {
   try {
     const { body } = req;
-    const { nama, email, password } = body;
+    const { name, email, password } = body;
     await db.query(
       `insert into tb_pentasbih
             set 
-            nama_pentasbih ="${nama}",
+            nama_pentasbih ="${name}",
             totalhi_pentasbih = 0,
             totalbi_pentasbih = 0,
             totalti_pentasbih = 0,
@@ -53,6 +53,29 @@ exports.login = async (req, res) => {
       return response(res, 200, "Sukses login", data[0]);
     } else {
       return response(res, 400, "Email atau password salah!", []);
+    }
+  } catch (error) {
+    console.log(error);
+    response(res, 500, error.message, []);
+  }
+};
+
+exports.checkUser = async (req, res) => {
+  try {
+    const { query } = req;
+    const { id } = query;
+    const data = await db.query(
+      `select * from tb_pentasbih
+            where
+           id = "${id}"
+            `,
+      { type: QueryTypes.SELECT }
+    );
+
+    if (data.length > 0) {
+      return response(res, 200, "Sukses login", data[0]);
+    } else {
+      return response(res, 400, "data tidak ditemukan", []);
     }
   } catch (error) {
     console.log(error);
