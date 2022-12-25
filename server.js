@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const { test, register, login, checkUser } = require("./src/controller/auth");
+const {
+  createHistory,
+  getAllHistoryByUserId,
+} = require("./src/controller/multiController");
 const app = express();
 
 app.use(cors());
@@ -18,6 +22,10 @@ app.get("/test", test);
 app.post("/register", register);
 app.post("/login", login);
 app.get("/check?", checkUser);
+
+app.post("/history", createHistory);
+
+app.get("/history?", getAllHistoryByUserId);
 
 app.listen(3000, () => {
   console.log("app running at port 3000");
