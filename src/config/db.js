@@ -1,5 +1,5 @@
 const { Sequelize } = require("sequelize");
-
+// config dari database localhost
 const config = new Sequelize("dbpentasbih", "root", "", {
   host: "localhost",
   dialect:

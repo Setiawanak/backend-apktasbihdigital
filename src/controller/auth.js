@@ -26,7 +26,6 @@ exports.register = async (req, res) => {
             `,
       { type: QueryTypes.INSERT }
     );
-
     response(res, 200, "Sukses register", []);
   } catch (error) {
     console.log(error);
@@ -60,6 +59,7 @@ exports.login = async (req, res) => {
   }
 };
 
+// cek login berhasil atau tidak dan juga login tidak akan ngulang kalau di tutup apknya
 exports.checkUser = async (req, res) => {
   try {
     const { query } = req;

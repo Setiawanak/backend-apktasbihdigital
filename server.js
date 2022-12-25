@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+// get , post , create
 app.get("/test", test);
 app.post("/register", register);
 app.post("/login", login);
@@ -27,6 +28,7 @@ app.post("/history", createHistory);
 
 app.get("/history?", getAllHistoryByUserId);
 
+// Jalanin server dari port 3000
 app.listen(3000, () => {
   console.log("app running at port 3000");
 });
